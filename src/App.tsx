@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [showLogin, setShowLogin] = useState(true);
+
+    const toggleForm = () => {
+        setShowLogin(!showLogin);
+    };
+
+    return (
+        <div className="min-h-screen">
+            {showLogin ? <Login /> : <Signup />}
+            <button
+                onClick={toggleForm}
+                className="absolute top-4 right-4 px-4 py-2 bg-white bg-opacity-20 rounded-full text-white text-sm font-medium hover:bg-opacity-30"
+            >
+                {showLogin ? "Go to Signup" : "Go to Login"}
+            </button>
+        </div>
+    );
 }
-
-export default App;
